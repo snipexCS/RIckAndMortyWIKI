@@ -53,13 +53,6 @@ console.log(posts);
       ))}
     </div>
 
-   <img src={post.image} alt={post.name} />
-          <h2>{post.name}</h2>
-          <p>Status: {post.status}</p>
-          <p>Species: {post.species}</p>
-          {post.type.length > 0 ? <p>Type: {post.type}</p> : null}
-          <p>Gender: {post.gender}</p>
-      
       
     
     

@@ -1,0 +1,45 @@
+.card {
+  width: 18rem;                /* ⬆️ wider */
+  height: 24rem;               /* ⬆️ taller */
+  background-color: #212121;
+  border-radius: 1rem;
+  border: #212121 0.2rem solid;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0.6rem 0.6rem 1rem #00000060;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Hover animation */
+.card:hover {
+  transform: translateY(-1.5rem) scale(1.03);
+  border: #f2295bf0 0.25em solid;
+  border-radius: 2.5rem 0 2.5rem 0;
+}
+
+/* Background image area */
+.card-cover {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Info overlay */
+.card-info {
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 0.8rem;
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+  border-top: 1px solid #f2295bf0;
+}
+
+.card-info h2 {
+  margin: 0.4rem 0;
+  font-size: 1.3rem;
+}
