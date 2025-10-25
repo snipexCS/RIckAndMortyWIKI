@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.background-wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  background: url('./assets/1335149.jpg') center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 2rem; 
+}
+
