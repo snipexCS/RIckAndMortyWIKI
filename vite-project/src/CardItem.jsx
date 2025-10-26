@@ -1,7 +1,9 @@
 import "./CardItem.css";
+import { Link } from "react-router-dom";
 
 function CardItem(props) {
   return (
+    <Link to={`${props.test}${props.id}`} style={{textDecoration:'none'}} >
     <div className="card" key={props.id}>
       <div
         className="card-cover"
@@ -16,6 +18,7 @@ function CardItem(props) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
 

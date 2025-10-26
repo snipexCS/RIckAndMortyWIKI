@@ -14,7 +14,12 @@
   font-weight: bold;
   text-align: center;
 }
-
+.nice{
+  margin-top: 100px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 70px;
+}
 
 .content_wrapper {
   display: flex;
@@ -34,7 +39,7 @@
   margin-bottom: 100px;
 }
 .inputs{
-  margin-top: 250px;
+  margin-top: 150px;
 }
 
 
