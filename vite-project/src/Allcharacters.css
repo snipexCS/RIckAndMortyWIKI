@@ -27,7 +27,12 @@
   align-items: center; 
   width: 100%;
 }
-
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .cards_container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); 

@@ -22,7 +22,7 @@ function Footers(){
         </div>
 
         <div className="row">
-          INFERNO Copyright © 2021 Inferno - All rights reserved || Designed By: Mahesh 
+           Copyright © 2025  - All rights reserved || Designed By: SnipexCS
         </div>
       </div>
     </footer>

@@ -7,10 +7,7 @@ function HomePage() {
   return (
     <>
       <div className="background-wrapper">
-        <div className="container">
-         
         
-        </div>
       </div>
 
       <div className="content-section">
