@@ -1,10 +1,12 @@
 .main_p {
-  background: #444;
+  background: linear-gradient(135deg, #1b2735 0%, #090a0f 100%);
   min-height: 100vh;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #f0f0f0;
+  font-family: 'Poppins', sans-serif;
 }
 
 .card_container {
@@ -16,82 +18,77 @@
 .cardHover {
   display: flex;
   flex-direction: row;
-  gap: 75px;
-  background-color: #7a7570;
+  align-items: center;
   justify-content: flex-start;
-  width: 500px;
-  height: 500px;
+  gap: 2rem;
+  width: 600px;
+  min-height: 350px;
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  align-items: center;
-  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   position: relative;
   overflow: hidden;
-  transition: all 0.5s ease;
 }
-
-
-.cardHover::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    0deg,
-    transparent,
-    transparent 30%,
-    rgba(0, 255, 255, 0.3)
-  );
-  transform: rotate(-45deg);
-  transition: all 0.5s ease;
-  opacity: 0;
-}
-
 
 .cardHover:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
   box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  border-color: rgba(0, 255, 255, 0.4);
 }
-
-.cardHover:hover::before {
-  opacity: 1;
-  transform: rotate(-45deg) translateY(100%);
-}
-
 
 .leftImg {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid #ccc;
-  position: relative;
-  z-index: 2;
+  border: 4px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cardHover:hover .leftImg {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
 }
 
 .rightCard {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  color: #f0f0f0;
+  gap: 0.6rem;
   flex: 1;
-  min-width: 200px;
-  position: relative;
-  z-index: 2;
-}
-
-.rightCard h2 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #fff;
 }
 
 .rightCard p {
   font-size: 1rem;
-  line-height: 1.5;
   color: #ddd;
+  letter-spacing: 0.5px;
+}
+
+.rightCard p strong {
+  color: #00ffff;
+}
+
+.rightCard p:nth-child(1) {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.status-alive {
+  color: #00ff99;
+  font-weight: bold;
+}
+
+.status-dead {
+  color: #ff5555;
+  font-weight: bold;
+}
+
+.status-unknown {
+  color: #aaa;
+  font-style: italic;
 }

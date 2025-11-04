@@ -7,7 +7,7 @@ function Navbars() {
       <ul className="menuItems">
         <li><Link to="/" data-item="Home">Home</Link></li>
         <li><Link to="/allcharacters" data-item="Characters">Characters</Link></li>
-        <li><Link  data-item="Projects">Projects</Link></li>
+        <li><Link to="/Merch"  data-item="Projects">Merch</Link></li>
         <li><Link  data-item="Blog">Blog</Link></li>
         <li><Link  data-item="Contact">Contact</Link></li>
       </ul>

@@ -6,6 +6,7 @@ import HomePage from './HomePage';
 import Allcharacters from './Allcharacters.jsx';
 import "./index.css";
 import CharacterDetails from './CharacterDetails.jsx';
+import Merch from "./Merch.jsx"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <Route path="/" element={<HomePage />}></Route>
     <Route path='/allcharacters' element={<Allcharacters/>}></Route>
     <Route path='/allcharacters/:id' element={<CharacterDetails/>}></Route>
+    <Route path='/Merch' element={<Merch/>}></Route>
     </Routes>
       
     </BrowserRouter>

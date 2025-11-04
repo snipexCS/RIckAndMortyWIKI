@@ -30,10 +30,10 @@ function CharacterDetails() {
                             fontSize: '20px',
                             color: fetchData.status === 'Alive' ? 'green' : 'red'
                         }}>STATUS: {fetchData.status} </p>
-                        <p style={{ fontSize: '20px' }}>SPECIES: {fetchData.species} </p>
-                        <p style={{ fontSize: '20px' }}>GENDER: {fetchData.gender} </p>
-                        <p style={{ fontSize: '20px' }}>location: {fetchData?.location?.name}</p>
-                        <p style={{ fontSize: '20px' }}>origin:{fetchData?.origin?.name}</p>
+                        <p style={{ fontSize: '20px' }}>Species : {fetchData.species} </p>
+                        <p style={{ fontSize: '20px' }}>Gender: {fetchData.gender} </p>
+                        <p style={{ fontSize: '20px' }}>Location: {fetchData?.location?.name}</p>
+                        <p style={{ fontSize: '20px' }}>Origin: {fetchData?.origin?.name}</p>
                         {fetchData.type && fetchData.type.length > 0 && <p>Type: {fetchData.type}</p>}
                     </div>
                 </div>
