@@ -7,6 +7,7 @@ import Allcharacters from './Allcharacters.jsx';
 import "./index.css";
 import CharacterDetails from './CharacterDetails.jsx';
 import Merch from "./Merch.jsx"
+import Quizz from './Quizz.jsx';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <Route path='/allcharacters' element={<Allcharacters/>}></Route>
     <Route path='/allcharacters/:id' element={<CharacterDetails/>}></Route>
     <Route path='/Merch' element={<Merch/>}></Route>
+    <Route path='/Quizz' element={<Quizz/>}></Route>
     </Routes>
       
     </BrowserRouter>

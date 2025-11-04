@@ -18,7 +18,6 @@ function CharacterDetails() {
     return (
 
         <div className="main_p">
-            <h1>hi -{id}</h1>
             <div className="card_container">
                 <div className="cardHover">
                     <div className="leftCard">

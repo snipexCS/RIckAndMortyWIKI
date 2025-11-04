@@ -87,11 +87,11 @@ function Allcharacters() {
               setPage(1);
             }}
             className="characters_s"
-            content="Search By name"
+        
           />
 
         </div>
-        <h1 className="nice">All characters</h1>
+        <h1 className="nice">Characters</h1>
 
         <div className="cards_container">
           {posts.map((post) => (
