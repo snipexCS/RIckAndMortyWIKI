@@ -56,6 +56,7 @@ const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
     }
     return pages;
   };
+  
   useEffect(() => {
   sessionStorage.setItem("currentPage", page);
 }, [page]);

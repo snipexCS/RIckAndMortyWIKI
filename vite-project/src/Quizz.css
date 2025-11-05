@@ -1,24 +1,92 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.container{
-    max-width: 1340px;
-    width: 100%;
-    margin: 0 auto;
-}
-.quizz_box{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    padding-top: 350px;
-}
-.quizz{
-    display: flex;
-    flex-direction: column;
-}
-.options{
+
+.quiz-container {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74ABE2, #5563DE);
+  font-family: "Poppins", sans-serif;
+}
+
+
+.quiz-box {
+  background: white;
+  border-radius: 16px;
+  padding: 30px 40px;
+  width: 420px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+
+.question-number {
+  color: #6b6b6b;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.question-text {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.option-btn {
+  background: #f3f3f3;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.option-btn:hover {
+  background: #5563DE;
+  color: white;
+  transform: scale(1.03);
+}
+
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.nav-btn {
+  background: #5563DE;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.nav-btn:hover {
+  background: #3342A0;
+  transform: scale(1.05);
+}
+
+
+.score-display {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.score-display span {
+  font-weight: bold;
+  color: #5563DE;
 }
