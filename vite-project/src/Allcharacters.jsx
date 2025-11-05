@@ -1,6 +1,5 @@
 import "./Allcharacters.css";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 import CardItem from "./CardItem";
 
 function Allcharacters() {
@@ -8,7 +7,9 @@ function Allcharacters() {
   const [totalPages, setTotalPages] = useState(0);
   const [startPage, setStartPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
+  const savedPage = sessionStorage.getItem("currentPage");
+const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
+
 
 
   useEffect(() => {
@@ -37,14 +38,14 @@ function Allcharacters() {
   const handlePrevGroup = () => {
     if (startPage > 1) {
       const newStart = startPage - 5;
-      updateParams(newStart + 4);
+      setPage(newStart + 4);
     }
   };
 
   const handleNextGroup = () => {
     if (startPage + 5 <= totalPages) {
       const newStart = startPage + 5;
-      updateParams(newStart);
+      setPage(newStart);
     }
   };
 
@@ -55,6 +56,10 @@ function Allcharacters() {
     }
     return pages;
   };
+  useEffect(() => {
+  sessionStorage.setItem("currentPage", page);
+}, [page]);
+
 
 
 
@@ -80,6 +85,7 @@ function Allcharacters() {
       <div className="content_wrapper">
         <div className="inputs">
           <input
+          placeholder="Search by Name"
             type="text"
             value={search}
             onChange={(e) => {
