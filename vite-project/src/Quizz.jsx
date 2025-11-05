@@ -3,32 +3,40 @@ import "./Quizz.css"
 import qBank from "./assets/Questions.js"
 
 function Quizz() {
-    const [test, settest] = useState(1);
+    const [qnumber, setQnumber] = useState(1);
     const [score, setScore] = useState(0);
-    const question = qBank.find((u) => u.id == test);
-    const options = question.options.map((option, index) => <div key={index} className="options1"><span >{option}</span></div>);
+    const [answered, setAnswered] = useState(0);
+    const question = qBank.find((u) => u.id == qnumber);
 
     const plus = () => {
-        if (test >= qBank.length) {
+        if (answered >= qBank.length) {
             alert(`Quiz finished! Your score is ${score} out of ${qBank.length}`);
-            settest(1);
+            setQnumber(1);
             setScore(0);
-        } else {
-            settest(test + 1);
+            setAnswered(0);
+        } else if (qnumber < qBank.length) {
+            setQnumber(qnumber + 1);
         }
     }
-    const Options = (option) => {
+    const minus = () => {
+        if (qnumber > 1) {
+            setQnumber(qnumber - 1)
+        } else {
+            setQnumber(1)
+        }
+    }
+
+    const Answers = (option) => {
         console.log(option);
         if (option === question.answer) {
-            console.log("correct answer")
+            console.log("correct answer");
             setScore(score + 1);
         } else {
-            console.log("bad")
+            console.log("bad");
         }
+        setAnswered(answered + 1);
         plus();
     }
-    console.log(score);
-
 
     return (
         <div className="container">
@@ -38,13 +46,13 @@ function Quizz() {
 
                     {question.options.map((option, index) => (
                         <div key={index} className="options1">
-                            <span onClick={() => Options(option)}>{option}</span>
+                            <span onClick={() => Answers(option)}>{option}</span>
                         </div>
                     ))}
 
                 </div>
+                <button onClick={minus}>-</button>
                 <button onClick={plus}>+</button>
-
             </div>
         </div>
     )
