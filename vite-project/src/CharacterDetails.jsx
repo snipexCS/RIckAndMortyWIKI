@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./CharacterDetails.css"
 
 function CharacterDetails() {
+   
 
 
     let { id } = useParams();

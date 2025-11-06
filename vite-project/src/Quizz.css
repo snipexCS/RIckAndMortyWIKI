@@ -17,6 +17,10 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
+.option-btn.selected {
+  background-color: rgb(86, 71, 133);
+}
+
 
 
 .question-number {
