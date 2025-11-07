@@ -1,6 +1,6 @@
 .characters_container {
   display: flex;
-  flex-direction: column; /* stack vertically */
+  flex-direction: column; 
   align-items: center;
   gap: 20px;
   padding: 20px;
@@ -8,6 +8,8 @@
   max-width: 1140px;
   width: 100%;
   margin: 0 auto;
+  min-height: 500px; 
+
 }
 .name{
   font-size: 1.2rem;
@@ -163,4 +165,26 @@
     0rem 55px 33px rgba(10, 60, 255, 0.05),
     0rem 97px 39px rgba(10, 60, 255, 0.01),
     0rem 152px 43px rgba(10, 60, 255, 0);
+}
+.Filter_list{
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+
+}
+.Filter_list button{
+  padding: 15px 30px;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  background: #1e1e1e;
+  cursor: pointer;
+  color: greenyellow;
+  box-shadow: 0 0 10px #363636, inset 0 0 10px #363636;
+  transition: transform 0.5s;
+}
+
+.Filter_list button:hover {
+  transform: scale(1.2, 0.8) rotate(5deg);
 }

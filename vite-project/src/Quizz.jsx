@@ -6,9 +6,6 @@ function Quizz() {
 
     const goodAudio = useRef(null);
     const badAudio = useRef(null);
-
-
-
     const [qnumber, setQnumber] = useState(1);
     const [score, setScore] = useState(0);
     const [answered, setAnswered] = useState(0);

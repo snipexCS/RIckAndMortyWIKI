@@ -8,7 +8,8 @@ function Allcharacters() {
   const [startPage, setStartPage] = useState(1);
   const [search, setSearch] = useState("");
   const savedPage = sessionStorage.getItem("currentPage");
-const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
+  const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
+  const [status, setStatus] = useState("")
 
 
 
@@ -33,8 +34,10 @@ const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
     setStartPage(groupStart);
   }, [page]);
 
-
-
+   const FilterHandler = (str)=>{
+       setStatus( str)
+       setPage(1);
+   }
   const handlePrevGroup = () => {
     if (startPage > 1) {
       const newStart = startPage - 5;
@@ -56,29 +59,29 @@ const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
     }
     return pages;
   };
-  
+
   useEffect(() => {
-  sessionStorage.setItem("currentPage", page);
-}, [page]);
+    sessionStorage.setItem("currentPage", page);
+  }, [page]);
 
 
 
 
- useEffect(() => {
-  const apiUrl = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}`;
-  fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.info && data.results) {
-        setPosts(data.results);
-        setTotalPages(data.info.pages);
-      } else {
-        setPosts([]);
-        console.warn("Invalid response or out of range page:", data);
-      }
-    })
-    .catch((err) => console.error(err));
-}, [page, search]);
+  useEffect(() => {
+    const apiUrl = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}&status=${status}`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.info && data.results) {
+          setPosts(data.results);
+          setTotalPages(data.info.pages);
+        } else {
+          setPosts([]);
+          console.warn("Invalid response or out of range page:", data);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, [page, search,status]);
 
 
   return (
@@ -86,7 +89,7 @@ const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
       <div className="content_wrapper">
         <div className="inputs">
           <input
-          placeholder="Search by Name"
+            placeholder="Search by Name"
             type="text"
             value={search}
             onChange={(e) => {
@@ -94,9 +97,15 @@ const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
               setPage(1);
             }}
             className="characters_s"
-        
+
           />
 
+        </div>
+        <div className="Filter_list">
+          <button  className="filter_btn"   onClick={()=>{FilterHandler("Dead")}}>Dead</button>
+          <button  className="filter_btn"  onClick={()=>{FilterHandler("Unknown")}}>Unknown</button>
+          <button  className="filter_btn"  onClick={()=>{FilterHandler("")}}>Reset</button>
+          <button  className="filter_btn"  onClick={()=>{FilterHandler("Alive")}}>Alive</button>
         </div>
         <h1 className="nice">Characters</h1>
 
