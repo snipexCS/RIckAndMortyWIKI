@@ -1,6 +1,6 @@
 .characters_container {
   display: flex;
-  flex-direction: column; /* stack vertically */
+  flex-direction: column; 
   align-items: center;
   gap: 20px;
   padding: 20px;
@@ -8,31 +8,68 @@
   max-width: 1140px;
   width: 100%;
   margin: 0 auto;
+  min-height: 500px; 
+
 }
 .name{
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
 }
-
+.nice{
+  margin-top: 100px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 70px;
+}
+.characters_s{
+   color: rgb(0, 0, 0);
+  border: 2px solid #8707ff;
+  border-radius: 10px;
+  padding: 10px 25px;
+  background: transparent;
+  width: 300px;
+}
 
 .content_wrapper {
   display: flex;
-  flex-direction: column; /* stack grid + pagination */
-  align-items: center; /* center pagination */
+  flex-direction: column; 
+  align-items: center; 
   width: 100%;
 }
-
+.active{
+  background-color: #0a3cff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #0a3cff;
+}
+.btns{
+  background-color: transparent;
+  border: 1px solid #0a3cff;
+  color: #0a3cff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .cards_container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); 
+  gap: 35px;          
+  justify-items: center;  
   width: 100%;
-   margin-top: 100px;
+  margin-top: 100px;
+  padding: 20px;
+  margin-bottom: 100px;
 }
 .inputs{
-  margin-top: 250px;
+  margin-top: 150px;
 }
 
 
@@ -128,4 +165,26 @@
     0rem 55px 33px rgba(10, 60, 255, 0.05),
     0rem 97px 39px rgba(10, 60, 255, 0.01),
     0rem 152px 43px rgba(10, 60, 255, 0);
+}
+.Filter_list{
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+
+}
+.Filter_list button{
+  padding: 15px 30px;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  background: #1e1e1e;
+  cursor: pointer;
+  color: greenyellow;
+  box-shadow: 0 0 10px #363636, inset 0 0 10px #363636;
+  transition: transform 0.5s;
+}
+
+.Filter_list button:hover {
+  transform: scale(1.2, 0.8) rotate(5deg);
 }

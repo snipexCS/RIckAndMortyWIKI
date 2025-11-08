@@ -1,87 +1,162 @@
-
 import "./Allcharacters.css";
-import { useState,useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import CardItem from "./CardItem";
-
-
 
 function Allcharacters() {
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-  let apiUrl = `https://rickandmortyapi.com/api/character/?page=${page}`;
-
-const hadnleNextPage = () => {
-  setPage(page + 1);
-}
-const hadnlePrevPage = () => {
-  if(page > 1){
-    setPage(page - 1);
-  }
-}
+  const [totalPages, setTotalPages] = useState(0);
+  const [startPage, setStartPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const savedPage = sessionStorage.getItem("currentPage");
+  const [page, setPage] = useState(savedPage ? parseInt(savedPage, 10) : 1);
+  const [status, setStatus] = useState("")
 
 
 
-
-  
   useEffect(() => {
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => setPosts(data.results))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, [apiUrl]);
+    const savedPosition = sessionStorage.getItem("scrollPosition");
+    if (savedPosition && posts.length > 0) {
+      setTimeout(() => {
+        window.scrollTo(0, parseFloat(savedPosition));
+        sessionStorage.removeItem("scrollPosition");
+      }, 0);
+    }
+  }, [posts]);
 
-console.log(posts);
+
+  const updatePage = (pg) => {
+    setPage(pg);
+  };
+
+
+  useEffect(() => {
+    const groupStart = Math.floor((page - 1) / 5) * 5 + 1;
+    setStartPage(groupStart);
+  }, [page]);
+
+   const FilterHandler = (str)=>{
+       setStatus( str)
+       setPage(1);
+   }
+  const handlePrevGroup = () => {
+    if (startPage > 1) {
+      const newStart = startPage - 5;
+      setPage(newStart + 4);
+    }
+  };
+
+  const handleNextGroup = () => {
+    if (startPage + 5 <= totalPages) {
+      const newStart = startPage + 5;
+      setPage(newStart);
+    }
+  };
+
+  const getVisiblePages = () => {
+    const pages = [];
+    for (let i = startPage; i < startPage + 5 && i <= totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  };
+
+  useEffect(() => {
+    sessionStorage.setItem("currentPage", page);
+  }, [page]);
+
+
+
+
+  useEffect(() => {
+    const apiUrl = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}&status=${status}`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.info && data.results) {
+          setPosts(data.results);
+          setTotalPages(data.info.pages);
+        } else {
+          setPosts([]);
+          console.warn("Invalid response or out of range page:", data);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, [page, search,status]);
+
+
   return (
     <div className="characters_container">
-      
+      <div className="content_wrapper">
+        <div className="inputs">
+          <input
+            placeholder="Search by Name"
+            type="text"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1);
+            }}
+            className="characters_s"
 
-  <div className="content_wrapper">
-   
-    <div className="inputs">
-      <input type="text" />
-      <input type="text" />
-      <input type="text" />
-    </div>
-    <div className="cards_container">
-      {posts.map((post) => (
-        
-        <div className="card" key={post.id}>
-          <CardItem image={post.image} name={post.name} status={post.status} species={post.species}
-          type={post.type} gender = {post.gender} />
-          
+          />
+
         </div>
-      ))}
+        <div className="Filter_list">
+          <button  className="filter_btn"   onClick={()=>{FilterHandler("Dead")}}>Dead</button>
+          <button  className="filter_btn"  onClick={()=>{FilterHandler("Unknown")}}>Unknown</button>
+          <button  className="filter_btn"  onClick={()=>{FilterHandler("")}}>Reset</button>
+          <button  className="filter_btn"  onClick={()=>{FilterHandler("Alive")}}>Alive</button>
+        </div>
+        <h1 className="nice">Characters</h1>
+
+        <div className="cards_container">
+          {posts.map((post) => (
+            <div className="card" key={post.id}>
+              <CardItem
+                test="/allcharacters/"
+                id={post.id}
+                image={post.image}
+                name={post.name}
+                status={post.status}
+                species={post.species}
+                type={post.type}
+                gender={post.gender}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="tabs">
+          <div className="tab-group">
+            <input checked="" readOnly id="tab1" name="tab" value="1" type="radio" />
+            <label htmlFor="tab1">
+              <span onClick={handlePrevGroup}>PREV</span>
+            </label>
+          </div>
+
+          <div className="pagination">
+            {getVisiblePages().map((pg) => (
+              <button
+                key={pg}
+                className={pg === page ? "active" : "btns"}
+                onClick={() => updatePage(pg)}
+              >
+                {pg}
+              </button>
+            ))}
+
+          </div>
+
+          <div className="tab-group">
+            <input id="tab3" readOnly name="tab" value="3" type="radio" />
+            <label htmlFor="tab3">
+              <span onClick={handleNextGroup}>NEXT</span>
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
-
-   <img src={post.image} alt={post.name} />
-          <h2>{post.name}</h2>
-          <p>Status: {post.status}</p>
-          <p>Species: {post.species}</p>
-          {post.type.length > 0 ? <p>Type: {post.type}</p> : null}
-          <p>Gender: {post.gender}</p>
-      
-      
-    
-    
-<div className="tabs">
-  <div className="tab-group">
-    <input checked="" readOnly id="tab1" name="tab" value="1" type="radio" />
-    <label htmlFor="tab1">
-     <span onClick={hadnlePrevPage}>-</span>
-    </label>
-  </div>
-  <div className="tab-group">
-    <input id="tab3"  readOnly name="tab" value="3" type="radio" />
-    <label htmlFor="tab3">
-      <span onClick={hadnleNextPage}>+</span>
-    </label>
-  </div>
-</div>
-</div>
-
-  </div>
-
-
   );
 }
+
 export default Allcharacters;
