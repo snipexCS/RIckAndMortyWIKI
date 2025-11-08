@@ -14,7 +14,7 @@ function Quizz() {
     const question = qBank.find((u) => u.id == qnumber);
 
     const playAudio = (good) => {
-        const audio = good ? goodAudio.current : badAudio.current;
+        let audio = good ? goodAudio.current : badAudio.current;
         if (audio) {
             audio.currentTime = 0;
             audio.play();
