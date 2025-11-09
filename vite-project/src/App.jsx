@@ -8,6 +8,7 @@ import "./index.css";
 import CharacterDetails from './CharacterDetails.jsx';
 import Merch from "./Merch.jsx"
 import Quizz from './Quizz.jsx';
+import TodoList from './TodoList.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     <Route path='/allcharacters/:id' element={<CharacterDetails/>}></Route>
     <Route path='/Merch' element={<Merch/>}></Route>
     <Route path='/Quizz' element={<Quizz/>}></Route>
+    <Route path='/TodoList' element={<TodoList/>}></Route>
     </Routes>
       
     </BrowserRouter>
