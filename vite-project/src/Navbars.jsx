@@ -10,6 +10,7 @@ function Navbars() {
         <li><Link to="/Merch"  data-item="Merch">Merch</Link></li>
         <li><Link to='/Quizz'  data-item="Quizz">Quizz</Link></li>
         <li><Link  data-item="Contact">Contact</Link></li>
+        <li><Link to='/ToDoList' data-item="ToDoList">ToDoList</Link></li>
       </ul>
     </nav>
   );
