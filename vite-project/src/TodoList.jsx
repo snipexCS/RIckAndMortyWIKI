@@ -6,7 +6,7 @@ function TodoList() {
     const [lists, setLists] = useState(arr)
     const [task, setTask] = useState('')
     const [isEdit, setIsEdit] = useState(null)
-    const [editTask, setEditTask] = useState(''); 
+    const [editTask, setEditTask] = useState('');
 
 
     const HandleInput = (e) => {
@@ -25,16 +25,52 @@ function TodoList() {
     const HandleEdit = (index) => {
         setIsEdit(index)
         setEditTask(lists[index]);
-        
+
 
     }
 
-    const saveEdit = (index)=>{
+    const saveEdit = (index) => {
         const newList = [...lists]
         newList[index] = editTask
         setLists(newList)
         setIsEdit(null)
     }
+    const handleMoveUp = (index) => {
+        if (index > 0) {
+            let newArr = [...lists]
+
+                ;[newArr[index], newArr[index - 1]] =
+                    [newArr[index - 1], newArr[index]]
+
+
+            setLists(newArr)
+        } else {
+            return null
+        }
+
+
+    }
+    const handleMoveDown = (index) => {
+        console.log(index);
+        let newArr = [...lists]
+        if (index < newArr.length - 1) {
+
+
+            ;[newArr[index], newArr[index + 1]] =
+                [newArr[index + 1], newArr[index]]
+
+
+            setLists(newArr)
+        } else {
+            return null
+        }
+
+
+
+    }
+
+
+
     return (
         <div className="todo_container">
             <div className="container2">
@@ -47,11 +83,12 @@ function TodoList() {
                     </div>
                     <ul className="list">
                         {lists.map((el, i) => {
-                            return <li key={i}>{el}<button onClick={() => Hadnleremove(i)}>Del</button><button onClick={() => HandleEdit(i)}>Edit</button>
+                            return <li key={i}  className="list_elements">{el}<button onClick={() => Hadnleremove(i)}>Del</button><button onClick={() => HandleEdit(i)}>Edit</button>
+                                <button onClick={() => handleMoveUp(i)}>Move Up</button><button onClick={() => handleMoveDown(i)}>Move down</button>
                                 <div >
-                                    {isEdit === i ? <input onChange={(e) => setEditTask(e.target.value)}   />  : null}
-                                    {isEdit === i ? <button onClick={() => saveEdit(i)}>Save</button>  : null}
-                                    
+                                    {isEdit === i ? <input onChange={(e) => setEditTask(e.target.value)} /> : null}
+                                    {isEdit === i ? <button onClick={() => saveEdit(i)}>Save</button> : null}
+
                                 </div> </li>
                         })}
                     </ul>
