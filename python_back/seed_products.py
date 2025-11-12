@@ -15,7 +15,7 @@ products = [
         "product_name": "Rick Sanchez Action Figure",
         "product_price": 29.99,
         "product_type": "Figure",
-        "product_img": "https://m.media-amazon.com/images/I/71oJ6pU+HHL._AC_SX679_.jpg",
+        "product_img": "https://m.media-amazon.com/images/I/51ArlfRp9vL._AC_SY300_SX300_QL70_FMwebp_.jpg",
         "product_description": "Rick with his portal gun, ready to ruin timelines.",
         "product_quantity": 15,
         "rating": 5,

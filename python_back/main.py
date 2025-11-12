@@ -2,8 +2,21 @@ from sqlalchemy import create_engine, Column, Integer, String, Float, CheckConst
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from fastapi import FastAPI, Depends
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # or ["*"] to allow all origins (for development only)
+    allow_credentials=True,
+    allow_methods=["*"],    # GET, POST, etc.
+    allow_headers=["*"],    # any headers
+)
 
 DATABASE_URL = "sqlite:///./products.db"
 
