@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import './TodoList.css'
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./configuration"
 
 function TodoList() {
     let arr = ["Finish watching episode 3", "Do homework", "Go out with friends"]
@@ -7,6 +9,23 @@ function TodoList() {
     const [task, setTask] = useState('')
     const [isEdit, setIsEdit] = useState(null)
     const [editTask, setEditTask] = useState('');
+    const [products, setProducts] = useState([]);
+
+
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const productsCollection = collection(db, "Todo_tasks");
+            const snapshot = await getDocs(productsCollection);
+            const productsList = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setProducts(productsList);
+        };
+
+        fetchProducts();
+    }, []);
 
 
     const HandleInput = (e) => {
@@ -73,6 +92,11 @@ function TodoList() {
 
     return (
         <div className="todo_container">
+            <div>
+                {products.map(product => (
+                    <div key={product.id}>{product.product_name}</div>
+                ))}
+            </div>
             <div className="container2">
 
 
@@ -83,7 +107,7 @@ function TodoList() {
                     </div>
                     <ul className="list">
                         {lists.map((el, i) => {
-                            return <li key={i}  className="list_elements">{el}<button onClick={() => Hadnleremove(i)}>Del</button><button onClick={() => HandleEdit(i)}>Edit</button>
+                            return <li key={i} className="list_elements">{el}<button onClick={() => Hadnleremove(i)}>Del</button><button onClick={() => HandleEdit(i)}>Edit</button>
                                 <button onClick={() => handleMoveUp(i)}>Move Up</button><button onClick={() => handleMoveDown(i)}>Move down</button>
                                 <div >
                                     {isEdit === i ? <input onChange={(e) => setEditTask(e.target.value)} /> : null}
