@@ -1,0 +1,14 @@
+.container_p{
+     max-width: 1140px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+}
+
+.merch_container{
+  gap: 35px;           
+  width: 100%;
+  padding: 20px;
+}

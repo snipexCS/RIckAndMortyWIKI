@@ -30,7 +30,6 @@ function TodoList() {
   }, []);
 
   //ToDo 
-  // 1.editing
   //2.adding some loader untill data fetches succesfully
   //3.improving ui
 

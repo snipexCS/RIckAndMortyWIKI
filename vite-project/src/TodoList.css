@@ -2,39 +2,121 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+  font-family: "Segoe UI", sans-serif;
 }
-.todo_container{
-    display: flex;
-    justify-content: center;
-    margin-top: 400px;
-    
+
+/* Page center */
+.todo_container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 100px;
 }
-.input{
-    display: flex;
-    align-items: center;
+
+/* Outer card */
+.container2 {
+  background: #ffffff;
+  padding: 30px;
+  width: 600px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
 }
-.container2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: aliceblue;
+
+/* Input box */
+.input {
+  width: 100%;
+  display: flex;
+  gap: 10px;
 }
-.todo_list{
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+
+.input input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #cdd4da;
+  font-size: 16px;
 }
-.list{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+
+.input input:focus {
+  outline: none;
+  border-color: #4a90e2;
 }
-.list_elements{
-    display: flex;
-    gap: 10px;
+
+.input button {
+  padding: 10px 16px;
+  border: none;
+  background: #4a90e2;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input button:hover {
+  background: #357ab8;
+}
+
+/* List */
+.list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Each todo item */
+.list_elements {
+  background: #f5f7fa;
+  padding: 14px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  border-left: 6px solid #4a90e2;
+}
+
+/* Buttons inside todo */
+.list_elements button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Button colors */
+.list_elements button:nth-child(2) { background: #ff4d4d; color: white; } /* Delete */
+.list_elements button:nth-child(3) { background: #ffc107; color: black; } /* Edit */
+.list_elements button:nth-child(4) { background: #4caf50; color: white; } /* Move Up */
+.list_elements button:nth-child(5) { background: #2196f3; color: white; } /* Move Down */
+
+.list_elements button:hover {
+  opacity: 0.8;
+}
+
+/* Edit section */
+.list_elements > div {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.list_elements input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.list_elements input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.list_elements div button {
+  background: #4a90e2;
+  color: white !important;
 }
