@@ -9,6 +9,7 @@ import CharacterDetails from './CharacterDetails.jsx';
 import Merch from "./Merch.jsx"
 import Quizz from './Quizz.jsx';
 import TodoList from './TodoList.jsx';
+import Error from './Error.jsx';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
     <Route path='/Merch' element={<Merch/>}></Route>
     <Route path='/Quizz' element={<Quizz/>}></Route>
     <Route path='/TodoList' element={<TodoList/>}></Route>
+    <Route path='*' element={<Error/>}></Route>
     </Routes>
       
     </BrowserRouter>

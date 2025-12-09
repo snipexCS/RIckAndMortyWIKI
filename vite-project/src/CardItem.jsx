@@ -14,7 +14,7 @@ function CardItem(props) {
       className="card-cover"
       src={props.image}
       alt={props.name}
-      loading="eager" // helps LCP
+      loading="eager" 
     />
     <div className="card-info">
       <h2>{props.name}</h2>

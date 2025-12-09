@@ -1,44 +1,101 @@
-import { useState } from "react";
-import './TodoList.css'
+import { useState, useEffect } from "react";
+import "./TodoList.css";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { db } from "./configuration";
+import { useButtons } from "./useButtons.js";
+import { useFireBase } from "./useFireBase.js";
 
 function TodoList() {
-    let arr = ["Finish watching episode 3", "Do homework", "Go out with friends"]
-    const [lists, setLists] = useState(arr)
-    const [task , setTask] = useState('')
+  const {
+    setTasks,
+    tasks,
+    handleMoveUp,
+    handleMoveDown,
+    handleDelete,
+    handleEdit,
+    saveEdit,
+    isEdit,
+    editTask,
+    setEditTask,
+    setTask,
+    task,
+    HandleInput,
+  } = useButtons();
+  const {
+    initialLocal,
+    addTaskToFirestore,
+    tasksCollectionRef,
+    deleteTaskFromFirestore,
+    updateTaskInFirestore,
+  } = useFireBase();
 
-   const HandleInput = (e)=>{
-    setTask(e.target.value)
-   }
-   
-    const addToList = ()=>{
-         if (task.trim() !== "") {
-            setLists([...lists, task]);
-            setTask(" "); 
-        }
-    }
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const snapshot = await getDocs(tasksCollectionRef);
+      const firebaseTasks = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        task: doc.data().task,
+        source: "firebase",
+      }));
+      const localTasks = initialLocal.map((t, i) => ({
+        id: `local-${i}`,
+        task: t,
+        source: "local",
+      }));
+      setTasks([...firebaseTasks, ...localTasks]);
+    };
 
+    fetchTasks();
+  }, []);
 
-    return (
-        <div className="todo_container">
-            <div className="container2">
+  //ToDo
+  //2.adding some loader untill data fetches succesfully
+  //3.improving ui
 
+  return (
+    <div className="todo_container">
+      <div className="container2">
+        <div className="todo_list">
+          <div className="input">
+            <input value={task} onChange={HandleInput} type="text" />
+            <button
+              onClick={() => addTaskToFirestore(task, tasks, setTasks, setTask)}
+            >
+              Add
+            </button>
+          </div>
+          <ul className="list">
+            {tasks.map((item, i) => (
+              <li key={item.id} className="list_elements">
+                {item.task}
+                <button
+                  onClick={() => handleDelete(i, deleteTaskFromFirestore)}
+                >
+                  Del
+                </button>
 
-                <div className="todo_list">
-                    <div className="input">
-                        <input value={task} onChange={(e)=>HandleInput(e)} type="text" />
-                        <button onClick={addToList}>add</button>
-                    </div>
-                    <ul className="list">
-                        {lists.map((el, i) => {
-                            return <li key={i}>{el}</li>
-                        })}
-                    </ul>
+                <button onClick={() => handleEdit(i)}>Edit</button>
+                <button onClick={() => handleMoveUp(i)}>Move Up</button>
+                <button onClick={() => handleMoveDown(i)}>Move Down</button>
 
-                </div>
-            </div>
-
+                {isEdit === i && (
+                  <div>
+                    <input
+                      value={editTask}
+                      onChange={(e) => setEditTask(e.target.value)}
+                    />
+                    <button onClick={() => saveEdit(i, updateTaskInFirestore)}>
+                      Save
+                    </button>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 export default TodoList;
