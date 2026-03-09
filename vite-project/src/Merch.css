@@ -6,6 +6,19 @@
   align-items: center;
   margin: 0 auto;
 }
+.Bucket_Container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
 
 .merchItem_wrapper {
   gap: 35px;

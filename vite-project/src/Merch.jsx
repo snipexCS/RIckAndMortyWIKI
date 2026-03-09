@@ -6,6 +6,10 @@ function Merch() {
   const [state, setState] = useState([]);
   const [bucket, setBucket] = useState([]);
   const [bucketEmpty, setBucketEmpty] = useState(true);
+  const [isCartOpen,setIsCartOpen] = useState(false)
+
+
+ const toggleCart = () => setIsCartOpen((prev) => !prev);
 
   let sumOfAll = () => {
     return Math.floor(
@@ -14,9 +18,13 @@ function Merch() {
   };
 
   let handleAdd = (item) => {
-    setBucket((prev) => [...prev, item]);
-    bucket.length > 0 ? setBucketEmpty(false) : setBucketEmpty(true);
+    setBucket((prev) => {
+      const newBucket = [...prev, item];
+      setBucketEmpty(newBucket.length === 0);
+      return newBucket;
+    });
   };
+
   console.log(bucket);
   console.log(sumOfAll());
 
@@ -32,16 +40,21 @@ function Merch() {
   return (
     <div className="merchPage_container">
       <h1>this is merch page</h1>
-      <div className="Bucket_Container">
+      <button onClick={toggleCart}>🛒 Cart ({bucket.length})</button>
+      {isCartOpen &&<div className="Bucket_Container">
         {bucket.length}
         {bucket.map((item) => {
-          return <div  key= {item.id} className="Bucket">
-            <p>{item.product_name}</p>
-            <p>{item.product_price}</p>
-          </div>
+          return (
+            <div key={item.id} className="Bucket">
+              <div className="bucketSummary">
+                <p>Total Items: {bucket.length}</p>
+                <p>Total Price: ${sumOfAll()}</p>
+              </div>
+            </div>
+          );
         })}
-       <p>{sumOfAll()}</p> 
-      </div>
+        <p>{sumOfAll()}</p>
+      </div>}
       <div className="test">
         {state.map((item, i) => {
           return (
